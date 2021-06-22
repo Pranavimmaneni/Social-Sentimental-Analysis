@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>API Docs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: rgb(44, 44, 44);
+            font-family:sans-serif;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center" style="margin-top: 50px;">API Docs</h1>
+    <div class="container">
+        <h5 style="margin-top: 70px;">API link : <a href="https://2uoffcsokj.execute-api.us-east-1.amazonaws.com/development">https://2uoffcsokj.execute-api.us-east-1.amazonaws.com/development</a></h5>
+        <h5 style="margin-top: 30px;">Body Parameter : </h5><br>
+        <div style="margin-left: 370px;">
+            {<br>
+            <strong>"hashtag"</strong> : "telstra"<br>
+            }
+            <br>
+        </div>
+        <h5 style="margin-top: 30px;">Request : <span style="color: rgb(79, 79, 255);">https://2uoffcsokj.execute-api.us-east-1.amazonaws.com/development/ + tweet-data?hashtag= + 'user-input'</span></h5><br>
+        <h5 style="margin-top: 30px;">Response : </h5><br>
+        <div style="margin-left: 370px;">
+            {<br>
+            <strong>"Hashtag"</strong> : "telstra"<br>
+            <strong>"Date/Time"</strong> : “2021-06-21 17:39:38”><br>
+            <strong>"Name"</strong> : "David White"<br>
+            <strong>"Screen name"</strong> : “david0102”<br>
+            <strong>"Sex"</strong> : "Male"<br>
+            <strong>"Location"</strong> : "Australia"<br>
+            <strong>"Description"</strong> : “I love Telstra products and services”<br>
+            <strong>"Sentiment"</strong> : “Positive”<br>
+            }
+            <br> 
+        </div>
+        <h5 style="margin-top: 30px;">The API returns data from 100 tweets for each request</h5>
+    </div>
+</body>
+</html>

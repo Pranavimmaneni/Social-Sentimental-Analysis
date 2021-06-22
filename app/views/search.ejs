@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title>Social Sentiment Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: rgb(44, 44, 44);
+            font-family:sans-serif;
+            color: aliceblue;
+        }
+        .container {
+            margin-top: 200px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        .box {
+            width: 400px;
+            height: 40px;
+        }
+        .submit {
+            margin-top: 10px;
+            height: 35px;
+            width: 400px;
+            background-color: #1DA1F2;
+            color: aliceblue;
+            font-weight: bolder;
+            border: none;
+        }
+        .submit:hover {
+            background-color: #267fb6;
+            font-size: larger;
+        }
+        .apidoc{
+            height: 35px;
+            width: 400px;
+            background-color: #ad06bd;
+            color: aliceblue;
+            font-weight: bolder;
+            border: none;
+        }
+        .apidoc:hover {
+            background-color: #8b0897;
+            font-size: larger;
+        }
+        img {
+            display: block;  
+            margin-left: auto;
+            margin-right: auto;  
+            padding: 5px;  
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img style="width: 100px; height: 100px;" src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c53e.png" alt="Twitter">
+        <h1 align="center">Social Sentiment Analysis</h1>
+        <form align="center" action="/results", method="GET">
+            <label><h4>#</h4></label>
+            <input class="box" type="text" placeholder="blessed" name="search"><br>
+            <label>&nbsp;&nbsp;&nbsp;</label>
+            <input class="submit" type="submit">
+        </form>
+        <form align="center" action="/documentation", method="GET">
+            <label>&nbsp;&nbsp;&nbsp;</label>
+            <input class="apidoc" type="submit" value="How To Use API">
+        </form>
+    </div>
+</body>
+</html>

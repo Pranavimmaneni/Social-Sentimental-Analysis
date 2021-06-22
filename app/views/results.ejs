@@ -1,0 +1,195 @@
+<html>
+<head>
+    <title>Social Sentiment Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .container {
+            width: 700px;
+            margin-top: 75px;
+            margin-bottom: 50px;
+        }
+        body {
+        background-color: rgb(44, 44, 44);
+        font-family:sans-serif;
+        color: aliceblue;
+    }
+    .apidoc{
+            height: 35px;
+            width: 400px;
+            background-color: #00ce4f;
+            color: rgb(0, 0, 0);
+            font-weight: bolder;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center" style="margin-top: 50px;">Results</h1>
+
+    <div class="container">
+        <canvas style="background-color: aliceblue; border-radius: 7.5px;" id="myChart3"></canvas>
+        <hr>
+        <button class="btn btn-success" id="bar3">Bar Chart</button>
+        <button class="btn btn-info" id="pie3">Pie Chart</button>
+    </div>
+    <div class="container">
+        <canvas style="background-color: aliceblue; border-radius: 7.5px;" id="myChart1"></canvas>
+        <hr>
+        <button class="btn btn-success" id="bar1">Bar Chart</button>
+        <button class="btn btn-info" id="pie1">Pie Chart</button>
+    </div>
+    <div class="container">
+        <canvas style="background-color: aliceblue; border-radius: 7.5px;" id="myChart2"></canvas>
+        <hr>
+        <button class="btn btn-success" id="bar2">Bar Chart</button>
+        <button class="btn btn-info" id="pie2">Pie Chart</button>
+    </div>
+    <div class="container">
+        <h1 align="center">Tweets Data</h1>
+        <ul>
+            [<br>
+            <% data["body"].forEach(function(tweet){ %>
+                {<br>
+                <strong>"Hashtag"</strong> : <%= tweet["Hashtag"] %><br>
+                <strong>"Date/Time"</strong> : <%= tweet["Data/Time"] %><br>
+                <strong>"Name"</strong> : <%= tweet["Name"] %><br>
+                <strong>"Screen name"</strong> : <%= tweet["Screen name"] %><br>
+                <strong>"Sex"</strong> : <%= tweet["Sex"] %><br>
+                <strong>"Location"</strong> : <%= tweet["Location"] %><br>
+                <strong>"Description"</strong> : <%= tweet["Description"] %><br>
+                <strong>"Sentiment"</strong> : <%= tweet["Sentiment"] %><br>
+                }
+                <br>    
+            <% }) %>
+            ]
+            <form align="center" action="/", method="GET">
+                <label>&nbsp;&nbsp;&nbsp;</label>
+                <input class="apidoc" type="submit" value="Go Back">
+            </form>
+    </div>
+    
+    <script>
+
+        let myChart1 = document.getElementById('myChart1').getContext('2d');
+        Chart.defaults.font.size = 16;
+        Chart.defaults.font.colour = 'white';
+        Chart.defaults.font.weight = 'bolder';
+        let sexChart = new Chart(myChart1, {
+            type: 'bar',
+            data: {
+                labels:["Male", "Female"],
+                datasets:[{
+                    label: 'Sex',
+                    data: [
+                        "<%= male  %>",
+                        "<%= female  %>"
+                    ],
+                    backgroundColor : [
+                        '#003f5c',
+                        '#bc5090'
+                    ],
+                    borderWidth: 2,
+                    borderColor: 'black'
+                }]
+            },
+            options: {}
+        });
+         
+        let myChart2 = document.getElementById('myChart2').getContext('2d');
+        let locationChart = new Chart(myChart2, {
+            type: 'bar',
+            data: {
+                labels:["India", "Australia", "United States", "United Kingdom", "Singapore", "Others"],
+                datasets:[{
+                    label: 'Location',
+                    data: [
+                        "<%= ind  %>",
+                        "<%= aus  %>",
+                        "<%= us  %>",
+                        "<%= uk  %>",
+                        "<%= sig  %>",
+                        "<%= other  %>"
+                    ],
+                    backgroundColor : [
+                        '#003f5c',
+                        '#444e86',
+                        '#955196',
+                        '#dd5182',
+                        '#ff6e54',
+                        '#ffa600'
+                    ],
+                    borderWidth: 2,
+                    borderColor: 'black'
+                }]
+            },
+            options: {
+                
+            }
+        });
+
+        let myChart3 = document.getElementById('myChart3').getContext('2d');
+        let sentimentChart = new Chart(myChart3, {
+            type: 'bar',
+            data: {
+                labels:["Positive", "Negative", "Neutral"],
+                datasets:[{
+                    label: 'Sentiment',
+                    data: [
+                        "<%= pos  %>",
+                        "<%= neg  %>",
+                        "<%= neu  %>",
+                    ],
+                    backgroundColor : [
+                        '#4589ff',
+                        '#fa4d56',
+                        '#08bdba'
+                    ],
+                    borderWidth: 2,
+                    borderColor: 'black'
+                }]
+            },
+            options: {}
+        });
+        
+        document.getElementById('bar3').addEventListener('click', changebar3);
+        document.getElementById('pie3').addEventListener('click', changepie3);
+        document.getElementById('bar2').addEventListener('click', changebar2);
+        document.getElementById('pie2').addEventListener('click', changepie2);
+        document.getElementById('bar1').addEventListener('click', changebar1);
+        document.getElementById('pie1').addEventListener('click', changepie1);
+
+        function changebar3(){
+            const updatetype = 'bar';
+            sentimentChart.config.type = updatetype;
+            sentimentChart.update()
+        }
+        function changepie3(){
+            const updatetype = 'pie';
+            sentimentChart.config.type = updatetype;
+            sentimentChart.update()
+        }
+        function changebar2(){
+            const updatetype = 'bar';
+            locationChart.config.type = updatetype;
+            locationChart.update()
+        }
+        function changepie2(){
+            const updatetype = 'pie';
+            locationChart.config.type = updatetype;
+            locationChart.update()
+        }
+        function changebar1(){
+            const updatetype = 'bar';
+            sexChart.config.type = updatetype;
+            sexChart.update()
+        }
+        function changepie1(){
+            const updatetype = 'pie';
+            sexChart.config.type = updatetype;
+            sexChart.update()
+        }
+    </script>
+
+</body>
+</html>
